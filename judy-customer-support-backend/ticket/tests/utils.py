@@ -15,7 +15,7 @@ def create_user() -> User:
     )
 
 
-def create_api_client_for_user(user: User) -> APIClient:
+def create_api_client(user: User) -> APIClient:
     client = APIClient()
     refresh_token = RefreshToken.for_user(user)
     access_token = str(refresh_token.access_token)

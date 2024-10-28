@@ -15,11 +15,8 @@ class TestCreateTicket(TestCase):
     def setUp(self) -> None:
         self.url = '/api/tickets/'
         self.fake = faker.Faker()
-        self.client = APIClient()
         self.user = test_utils.create_user()
-        refresh_token = RefreshToken.for_user(self.user)
-        access_token = str(refresh_token.access_token)
-        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
+        self.client = test_utils.create_api_client(self.user)
 
     def test_create_ticket_no_authentication(self):
         client = APIClient()

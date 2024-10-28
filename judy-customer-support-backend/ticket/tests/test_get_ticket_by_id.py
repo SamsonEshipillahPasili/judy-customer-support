@@ -14,7 +14,7 @@ class TestGetTicketById(TestCase):
         self.ticket = test_utils.create_test_ticket(self.user)
         self.base_url = f'/api/tickets'
         self.url = f'{self.base_url}/{self.ticket.id}/'
-        self.client = test_utils.create_api_client_for_user(self.user)
+        self.client = test_utils.create_api_client(self.user)
 
     def test_get_ticket_no_authentication(self):
         client = APIClient()
@@ -42,6 +42,6 @@ class TestGetTicketById(TestCase):
 
     def test_get_ticket_by_id_for_a_non_owner(self) -> None:
         user2 = test_utils.create_user()
-        client2 = test_utils.create_api_client_for_user(user2)
+        client2 = test_utils.create_api_client(user2)
         response = client2.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
