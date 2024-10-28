@@ -11,7 +11,7 @@ class TicketSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         if not self.instance:
-            return
+            return attrs
 
         if self.instance.is_resolved:
             raise ValidationError('You cannot update a resolved ticket')
