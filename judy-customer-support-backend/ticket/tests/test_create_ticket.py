@@ -10,7 +10,7 @@ import faker
 from ticket.models import Ticket
 
 
-class CreateTicketTest(TestCase):
+class TestCreateTicket(TestCase):
     def setUp(self) -> None:
         self.url = '/api/tickets/'
         self.fake = faker.Faker()
