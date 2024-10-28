@@ -12,6 +12,7 @@ from ticket.models import Ticket
 
 class CreateTicketTest(TestCase):
     def setUp(self) -> None:
+        self.url = '/api/tickets/'
         self.fake = faker.Faker()
         self.client = APIClient()
         self.user = User.objects.create_user(
@@ -27,7 +28,7 @@ class CreateTicketTest(TestCase):
             "title": self.fake.sentence(nb_words=3),
             "description": self.fake.text()
         }
-        response = client.post('/api/tickets/', payload, format='json')
+        response = client.post(self.url, payload, format='json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
@@ -36,7 +37,7 @@ class CreateTicketTest(TestCase):
             "title": self.fake.sentence(nb_words=3),
             "description": self.fake.text()
         }
-        response = self.client.post('/api/tickets/', payload, format='json')
+        response = self.client.post(self.url, payload, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -65,19 +66,19 @@ class CreateTicketTest(TestCase):
     def test_create_ticket_with_missing_fields(self) -> None:
         # No ticket fields
         payload = {}
-        response = self.client.post('/api/tickets/', payload, format='json')
+        response = self.client.post(self.url, payload, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         # Only the ticket title
         payload = {
             "title": self.fake.sentence(nb_words=3),
         }
-        response = self.client.post('/api/tickets/', payload, format='json')
+        response = self.client.post(self.url, payload, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         # Only the ticket description
         payload = {
             "description": self.fake.sentence(nb_words=3),
         }
-        response = self.client.post('/api/tickets/', payload, format='json')
+        response = self.client.post(self.url, payload, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
