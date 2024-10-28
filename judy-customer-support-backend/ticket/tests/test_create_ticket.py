@@ -39,18 +39,10 @@ class TestCreateTicket(TestCase):
         }
         response = self.client.post(self.url, payload, format='json')
 
+        # HTTP status check
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        # Sample data response
-        # {
-        #     "id": 4,
-        #     "title": "Test",
-        #     "description": "Test Description",
-        #     "is_resolved": false,
-        #     "owner": 1,
-        #     "created_at": "2024-10-27T10:58:36.845470Z",
-        #     "resolved_at": null
-        # }
+        # HTTP Payload check
         self.assertEqual(response.data['title'], payload['title'])
         self.assertEqual(response.data['description'], payload['description'])
         self.assertFalse(response.data['is_resolved'])
@@ -59,9 +51,13 @@ class TestCreateTicket(TestCase):
         self.assertTrue(isinstance(response.data['created_at'], str))
         self.assertTrue(response.data['resolved_at'] is None)
 
+        # DB entry check
         self.assertTrue(
             Ticket.objects.filter(id=response.data['id']).exists()
         )
+
+        # Check if the created ticket belongs to the authenticated user
+        self.assertEqual(response.data['owner'], self.user.id)
 
     def test_create_ticket_with_missing_fields(self) -> None:
         # No ticket fields
