@@ -40,6 +40,12 @@ class TestGetTicketById(TestCase):
 
         self.assertTrue(response.data['resolved_at'] is None)
 
+    def test_get_non_existent_ticket_by_id(self) -> None:
+        response = self.client.get(f'{self.base_url}/{1_000_000}/')
+
+        # HTTP status check
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
     def test_get_ticket_by_id_for_a_non_owner(self) -> None:
         user2 = test_utils.create_user()
         client2 = test_utils.create_api_client(user2)
