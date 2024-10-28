@@ -1,3 +1,6 @@
+import datetime as dt
+from typing import Tuple, Mapping, Any
+
 import faker
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
@@ -29,3 +32,8 @@ def create_test_ticket(owner: User) -> Ticket:
         description=_fake.text(),
         owner=owner
     )
+
+def format_datetime(datetime: dt.datetime | None) -> str | None:
+    if datetime is None:
+        return None
+    return dt.datetime.strftime(datetime, "%Y-%m-%dT%H:%M:%S.%fZ")
