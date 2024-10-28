@@ -9,15 +9,14 @@ import faker
 
 from ticket.models import Ticket
 
+from . import utils as test_utils
 
 class TestCreateTicket(TestCase):
     def setUp(self) -> None:
         self.url = '/api/tickets/'
         self.fake = faker.Faker()
         self.client = APIClient()
-        self.user = User.objects.create_user(
-            username='testuser', password='Pa$$word123'
-        )
+        self.user = test_utils.create_user()
         refresh_token = RefreshToken.for_user(self.user)
         access_token = str(refresh_token.access_token)
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')

@@ -1,44 +1,20 @@
 import datetime as dt
 
-from django.contrib.auth.models import User
 from django.test import TestCase
 
 from rest_framework import status
 from rest_framework.test import APIClient
-from rest_framework_simplejwt.tokens import RefreshToken
 
-import faker
 
-from ticket.models import Ticket
-
+from . import utils as test_utils
 
 class TestGetTicketById(TestCase):
-
-    def _create_api_client_for_user(self, user: User) -> APIClient:
-        client = APIClient()
-        refresh_token = RefreshToken.for_user(user)
-        access_token = str(refresh_token.access_token)
-        client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
-        return client
-
-    def _create_user(self) -> User:
-        return User.objects.create_user(
-            username=self.fake.user_name(),
-            password=self.fake.password()
-        )
-
     def setUp(self) -> None:
-        self.fake = faker.Faker()
-        self.user = self._create_user()
-        self.ticket = Ticket.objects.create(
-            title=self.fake.sentence(nb_words=3),
-            description=self.fake.text(),
-            owner=self.user
-        )
+        self.user = test_utils.create_user()
+        self.ticket = test_utils.create_test_ticket(self.user)
         self.base_url = f'/api/tickets'
         self.url = f'{self.base_url}/{self.ticket.id}/'
-
-        self.client = self._create_api_client_for_user(self.user)
+        self.client = test_utils.create_api_client_for_user(self.user)
 
     def test_get_ticket_no_authentication(self):
         client = APIClient()
@@ -65,7 +41,7 @@ class TestGetTicketById(TestCase):
         self.assertTrue(response.data['resolved_at'] is None)
 
     def test_get_ticket_by_id_for_a_non_owner(self) -> None:
-        user2 = self._create_user()
-        client2 = self._create_api_client_for_user(user2)
+        user2 = test_utils.create_user()
+        client2 = test_utils.create_api_client_for_user(user2)
         response = client2.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
