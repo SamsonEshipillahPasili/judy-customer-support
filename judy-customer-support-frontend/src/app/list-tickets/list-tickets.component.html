@@ -1,4 +1,4 @@
-<app-modal [isOpen]="true" [title]="'Add A New Ticket'">
+<app-modal [isOpen]="addTicketModalState | async" [title]="'Add A New Ticket'">
   <app-add-ticket></app-add-ticket>
 </app-modal>
 
@@ -7,7 +7,8 @@
     <div class="flex justify-between items-center mb-6">
       <h2 class="text-2xl font-bold text-gray-800">Tickets</h2>
       <button type="submit"
-              class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+              class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+              (click)="onCreateNewTicket()">
         Create New Ticket
       </button>
     </div>

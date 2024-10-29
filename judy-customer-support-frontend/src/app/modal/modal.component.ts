@@ -11,7 +11,7 @@ import {NgIf} from '@angular/common';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
-  @Input() isOpen = false;
+  @Input() isOpen: boolean | null = false;
   @Input() title = '';
 
   closeModal() {
