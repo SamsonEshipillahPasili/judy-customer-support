@@ -61,4 +61,31 @@ export class LoginService {
     return !this.isAccessTokenExpired();
   }
 
+  public async login(loginRequest: LoginRequest): Promise<boolean> {
+    try {
+      const result = await fetch(
+        OBTAIN_TOKEN_PAIR_ENDPOINT,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginRequest),
+          method: 'POST',
+        }
+      );
+
+      if (result.status == 200) {
+        const creds: LoginResponse = await result.json();
+        localStorage.setItem(this.ACCESS_TOKEN_KEY, creds.access);
+        localStorage.setItem(this.REFRESH_TOKEN_KEY, creds.refresh);
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
 }
