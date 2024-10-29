@@ -93,6 +93,14 @@ python manage.py runserver
 npm install
 ```
 
+3. Run the UI tests
+First open the test suite at `judy-customer-support/judy-customer-support-frontend/cypress/e2e/spec.cy.ts`.
+Update the `username` and `password` to the values you generated above from `line 10`.
+Run the tests.
+```bash
+ng e2e
+```
+
 3. Run the frontend. Ensure the port 4200 is available, as that the default port used by angular and assumed in this manual.
 ```bash
 ng serve
