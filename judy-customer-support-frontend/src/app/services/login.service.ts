@@ -48,6 +48,13 @@ export class LoginService {
     return this.isTokenExpired(accessToken);
   }
 
+  public async getOrRefreshAccessToken(): Promise<string> {
+    if (this.isAccessTokenExpired()) {
+      await this.refreshToken();
+    }
+    return localStorage.getItem(this.ACCESS_TOKEN_KEY) || '';
+  }
+
   /**
    * Is the current user authenticated?
    */
