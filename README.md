@@ -88,10 +88,15 @@ python manage.py runserver
    cd judy-customer-support/judy-customer-support-frontend
 ```
 
-2. Run the frontend. Ensure the port 4200 is available, as that the default port used by angular and assumed in this manual.
+2. Install the app dependencies.
+```bash
+npm install
+```
+
+3. Run the frontend. Ensure the port 4200 is available, as that the default port used by angular and assumed in this manual.
 ```bash
 ng serve
 ```
 
-3. Open the url: [Judy Customer Tickets App](http://localhost:4200). You will be redirected to sign in.
+4. Open the url: [Judy Customer Tickets App](http://localhost:4200). You will be redirected to sign in.
 Use the credentials generated above to sign in.
