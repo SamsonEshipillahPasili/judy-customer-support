@@ -90,11 +90,11 @@
             <span class="font-semibold text-slate-600"> {{ ticket.resolved_at | date }} </span>
           </td>
           <td class="py-3 px-4">
-            <button (click)="onResolveTicket(ticket)"
+            <button (click)="onResolveTicket(ticket)" *ngIf="!ticket.is_resolved"
                     class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 mr-2">
               Resolve
             </button>
-            <button (click)="onEditTicket()"
+            <button (click)="onEditTicket()" *ngIf="!ticket.is_resolved"
                     class="bg-white hover:bg-indigo-600 hover:text-white text-indigo-500 text-xs font-semibold py-1 px-3 rounded-lg focus:ring-2 focus:outline-none ring-2 ring-indigo-500 ring-opacity-50 mr-2">
               Edit
             </button>
