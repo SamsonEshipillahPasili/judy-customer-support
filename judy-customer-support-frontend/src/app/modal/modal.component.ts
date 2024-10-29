@@ -12,6 +12,7 @@ import {NgIf} from '@angular/common';
 })
 export class ModalComponent {
   @Input() isOpen = false;
+  @Input() title = '';
 
   closeModal() {
 
