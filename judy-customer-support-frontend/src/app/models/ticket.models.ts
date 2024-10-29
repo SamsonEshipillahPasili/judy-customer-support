@@ -7,3 +7,8 @@ export interface Ticket {
   created_at: string;
   resolved_at: string | null;
 }
+
+export interface AddTicketRequest {
+  title: string
+  description: string
+}
