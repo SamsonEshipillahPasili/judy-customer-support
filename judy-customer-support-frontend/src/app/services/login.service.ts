@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {LoginRequest, LoginResponse, RefreshTokenRequest, RefreshTokenResponse} from '../models/auth.models';
+import {OBTAIN_TOKEN_PAIR_ENDPOINT, REFRESH_TOKEN_ENDPOINT} from '../app.endpoints';
 
 @Injectable({
   providedIn: 'root'

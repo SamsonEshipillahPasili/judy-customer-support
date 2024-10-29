@@ -1,18 +1,18 @@
-interface LoginRequest {
+export interface LoginRequest {
   username: string;
   password: string;
 }
 
-interface LoginResponse {
+export interface LoginResponse {
   access: string
   refresh: string
 }
 
-interface RefreshTokenRequest {
+export interface RefreshTokenRequest {
   refresh: string
 }
 
-interface RefreshTokenResponse {
+export interface RefreshTokenResponse {
   access: string
   refresh: string
 }
