@@ -12,3 +12,13 @@ export interface AddTicketRequest {
   title: string
   description: string
 }
+
+export interface UpdateTicketRequest {
+  title: string
+  description: string
+}
+
+export interface ResolveTicketRequest {
+  is_resolved: true
+}
+
