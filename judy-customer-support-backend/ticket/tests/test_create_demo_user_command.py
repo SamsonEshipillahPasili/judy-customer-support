@@ -6,7 +6,7 @@ from django.core.management import call_command
 
 class TestCreateDemoUserCommand(TestCase):
 
-    def test_command(self):
+    def test_create_demo_user(self):
         # Capture the output of the command
         out = StringIO()
         call_command('create_demo_user', stdout=out)
