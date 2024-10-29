@@ -1,6 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgIf} from '@angular/common';
-import {ModalService} from '../services/modal.service';
 
 @Component({
   selector: 'app-modal',
@@ -14,16 +13,18 @@ import {ModalService} from '../services/modal.service';
 export class ModalComponent {
   @Input() isOpen: boolean | null = false;
   @Input() title = '';
+  @Output() cancelEvent = new EventEmitter();
+  @Output() confirmEvent = new EventEmitter();
 
-  constructor(private _modalService: ModalService) {
+  constructor() {
 
   }
 
-  closeModal() {
-    this._modalService.closeAllModals();
+  cancelModal(): void {
+    this.cancelEvent.emit();
   }
 
-  confirm() {
-
+  confirm(): void {
+    this.confirmEvent.emit();
   }
 }

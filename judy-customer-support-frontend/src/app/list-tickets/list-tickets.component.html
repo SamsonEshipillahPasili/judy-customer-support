@@ -1,4 +1,7 @@
-<app-modal [isOpen]="addTicketModalState | async" [title]="'Add A New Ticket'">
+<app-modal [isOpen]="isAddTicketModalOpen | async" [title]="'Add A New Ticket'"
+           (cancelEvent)="onAddTicketCancel()"
+           (confirmEvent)="onAddTicketConfirm()"
+>
   <app-add-ticket></app-add-ticket>
 </app-modal>
 
