@@ -1,3 +1,9 @@
+<div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert" *ngIf="errorMsg">
+      <div>
+        <span class="font-medium">Error!</span> There was an error deleting the ticket. Try Again.
+      </div>
+</div>
+
 <div>
-  The Ticket <span class="font-bold">Sample Title</span> will be deleted!
+  The Ticket <span class="font-bold">{{ ticket?.title }}</span> will be deleted!
 </div>

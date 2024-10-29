@@ -28,7 +28,7 @@ export class TicketService {
   }
 
   public async addTicket(ticketRequest: AddTicketRequest): Promise<Ticket> {
-    const accessToken = this._loginService.getOrRefreshAccessToken();
+    const accessToken = await this._loginService.getOrRefreshAccessToken();
     const response = await fetch(
       TICKETS_ENDPOINT,
       {
@@ -47,9 +47,9 @@ export class TicketService {
   }
 
   public async updateTicket(ticketId: number, ticketRequest: UpdateTicketRequest): Promise<Ticket> {
-    const accessToken = this._loginService.getOrRefreshAccessToken();
+    const accessToken = await this._loginService.getOrRefreshAccessToken();
     const response = await fetch(
-      TICKETS_ENDPOINT + ticketId,
+      TICKETS_ENDPOINT + ticketId + "/",
       {
         headers: {
           'Authorization': 'Bearer ' + accessToken,
@@ -66,9 +66,9 @@ export class TicketService {
   }
 
    public async resolveTicket(ticketId: number, ticketRequest: ResolveTicketRequest): Promise<Ticket> {
-    const accessToken = this._loginService.getOrRefreshAccessToken();
+    const accessToken = await this._loginService.getOrRefreshAccessToken();
     const response = await fetch(
-      TICKETS_ENDPOINT + ticketId,
+      TICKETS_ENDPOINT + ticketId + "/",
       {
         headers: {
           'Authorization': 'Bearer ' + accessToken,
@@ -85,9 +85,9 @@ export class TicketService {
   }
 
    public async deleteTicket(ticketId: number): Promise<void> {
-    const accessToken = this._loginService.getOrRefreshAccessToken();
+    const accessToken = await this._loginService.getOrRefreshAccessToken();
     const response = await fetch(
-      TICKETS_ENDPOINT + ticketId,
+      TICKETS_ENDPOINT + ticketId + "/",
       {
         headers: {
           'Authorization': 'Bearer ' + accessToken

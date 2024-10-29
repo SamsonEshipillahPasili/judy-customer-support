@@ -1,3 +1,5 @@
+import {Ticket} from './ticket.models';
+
 /**
  * The list of modals we have in the app.
  */
@@ -14,10 +16,13 @@ export enum ModalActionEnum {
   OPEN,
   CLOSE,
   CANCEL,
-  CONFIRM
+  CONFIRM,
+  LOADING,
+  NOT_LOADING
 }
 
 export interface ModalEvent {
   modalType: ModalTypeEnum
   modalAction: ModalActionEnum
+  ticket?: Ticket
 }

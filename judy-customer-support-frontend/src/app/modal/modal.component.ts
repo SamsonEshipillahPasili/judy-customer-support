@@ -1,11 +1,14 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgIf} from '@angular/common';
+import {AsyncPipe, NgIf} from '@angular/common';
+import {ModalService} from '../services/modal.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    AsyncPipe
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
@@ -16,8 +19,10 @@ export class ModalComponent {
   @Output() cancelEvent = new EventEmitter();
   @Output() confirmEvent = new EventEmitter();
 
-  constructor() {
+  protected isModalLoading: Observable<boolean>;
 
+  constructor(private _modalService: ModalService) {
+    this.isModalLoading = this._modalService.isModalLoading();
   }
 
   cancelModal(): void {

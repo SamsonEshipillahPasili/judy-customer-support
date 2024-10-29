@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, filter, map, Observable} from 'rxjs';
 import {ModalActionEnum, ModalEvent, ModalTypeEnum} from '../models/modal.models';
+import {Ticket} from '../models/ticket.models';
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +33,12 @@ export class ModalService {
       );
   }
 
-  public openModal(modalType: ModalTypeEnum): void {
+  public openModal(modalType: ModalTypeEnum, ticket?: Ticket): void {
     this.closeAllModals();
     this.modalEvents.next({
       modalType: modalType,
-      modalAction: ModalActionEnum.OPEN
+      modalAction: ModalActionEnum.OPEN,
+      ticket: ticket
     });
   }
 
@@ -55,6 +57,30 @@ export class ModalService {
       modalAction: ModalActionEnum.CANCEL
     });
   }
+
+  public showModalLoader(): void {
+    this.modalEvents.next({
+      modalType: ModalTypeEnum.NONE,
+      modalAction: ModalActionEnum.LOADING
+    });
+  }
+
+  public hideModalLoader(): void {
+    this.modalEvents.next({
+      modalType: ModalTypeEnum.NONE,
+      modalAction: ModalActionEnum.NOT_LOADING
+    });
+  }
+
+  public isModalLoading(): Observable<boolean> {
+    return this.modalEvents.asObservable().pipe(
+      filter(it => it.modalType == ModalTypeEnum.NONE),
+      filter(it => it.modalAction == ModalActionEnum.LOADING
+        || it.modalAction == ModalActionEnum.NOT_LOADING),
+      map(it => it.modalAction == ModalActionEnum.LOADING),
+    );
+  }
+
 
   public confirmModal(modalType: ModalTypeEnum): void {
     this.closeAllModals();

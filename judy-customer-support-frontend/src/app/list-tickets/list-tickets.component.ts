@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 import {ListTicketsService} from '../services/list-tickets.service';
 import {ListTicketsState} from '../models/list_tickets.models';
 import {DatePipe} from '../services/date.pipe';
+import {Ticket} from '../models/ticket.models';
 
 @Component({
   selector: 'app-list-tickets',
@@ -63,8 +64,8 @@ export class ListTicketsComponent {
     this._modalService.confirmModal(ModalTypeEnum.ADD_TICKET_MODAL);
   }
 
-  public onDeleteTicket(): void {
-    this._modalService.openModal(ModalTypeEnum.DELETE_TICKET_MODAL);
+  public onDeleteTicket(ticket: Ticket): void {
+    this._modalService.openModal(ModalTypeEnum.DELETE_TICKET_MODAL, ticket);
   }
 
   public onDeleteTicketCancel(): void {
