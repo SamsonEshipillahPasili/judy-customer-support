@@ -47,7 +47,7 @@ export class LoginComponent {
     this.isLoading = true;
 
     const loginRequest: LoginRequest = {
-      username: this.loginForm.value.password || '',
+      username: this.loginForm.value.username || '',
       password: this.loginForm.value.password || ''
     };
 
