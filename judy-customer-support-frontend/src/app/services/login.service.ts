@@ -93,5 +93,34 @@ export class LoginService {
     localStorage.removeItem(this.ACCESS_TOKEN_KEY);
   }
 
+  public async refreshToken(): Promise<boolean> {
+    try {
+      const refreshTokenRequest: RefreshTokenRequest = {
+        refresh: localStorage.getItem(this.REFRESH_TOKEN_KEY) || ''
+      };
+      const result = await fetch(
+        REFRESH_TOKEN_ENDPOINT,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(refreshTokenRequest),
+          method: 'POST',
+        }
+      );
+
+      if (result.status == 200) {
+        const creds: RefreshTokenResponse = await result.json();
+        localStorage.setItem(this.ACCESS_TOKEN_KEY, creds.access);
+        localStorage.setItem(this.REFRESH_TOKEN_KEY, creds.refresh);
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 
 }
