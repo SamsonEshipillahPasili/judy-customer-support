@@ -4,7 +4,8 @@
 export enum ModalTypeEnum {
   NONE,
   ADD_TICKET_MODAL,
-  DELETE_TICKET_MODAL
+  DELETE_TICKET_MODAL,
+  EDIT_TICKET_MODAL
 }
 
 export enum ModalActionEnum {
