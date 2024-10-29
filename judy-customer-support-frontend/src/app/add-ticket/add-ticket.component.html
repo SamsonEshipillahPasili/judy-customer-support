@@ -1,16 +1,28 @@
-<div class="space-y-4">
+<div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert" *ngIf="errorMsg">
+      <div>
+        <span class="font-medium">Error!</span> {{ errorMsg }}
+      </div>
+</div>
+
+<form class="space-y-4"  [formGroup]="addTicketForm">
 
   <!-- Title Field -->
   <div>
     <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-    <input type="text" id="title" name="title" required
+    <input type="text" id="title" name="title" required formControlName="title"
            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500">
+    <div *ngIf="title?.invalid && title?.touched" class="error">
+      <small class="text-red-500" *ngIf="title?.errors?.['required']">Title is required.</small>
+    </div>
   </div>
 
    <!-- Description Field -->
   <div>
     <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-    <textarea id="description" name="description" rows="6"
+    <textarea id="description" name="description" rows="6" formControlName="description"
               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"></textarea>
+    <div *ngIf="description?.invalid && description?.touched" class="error">
+      <small class="text-red-500" *ngIf="description?.errors?.['required']">Description is required.</small>
+    </div>
   </div>
-</div>
+</form>
