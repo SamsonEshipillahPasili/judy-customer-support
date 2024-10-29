@@ -88,4 +88,10 @@ export class LoginService {
     }
   }
 
+  public logout(): void {
+    localStorage.removeItem(this.REFRESH_TOKEN_KEY);
+    localStorage.removeItem(this.ACCESS_TOKEN_KEY);
+  }
+
+
 }
