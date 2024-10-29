@@ -16,6 +16,12 @@
   <app-edit-ticket></app-edit-ticket>
 </app-modal>
 
+<app-modal [isOpen]="isResolveTicketModalOpen | async" [title]="'Resolve Ticket'"
+           (cancelEvent)="onResolveTicketCancel()"
+           (confirmEvent)="onResolveTicketConfirm()">
+  <app-resolve-ticket></app-resolve-ticket>
+</app-modal>
+
 
 <div class="bg-gray-100 flex justify-center min-h-screen">
   <div class="w-full max-w-7xl bg-white shadow-lg rounded-lg p-8 my-4">
@@ -56,7 +62,7 @@
             <span class="font-semibold text-slate-600">12-03-14 13:00</span>
           </td>
           <td class="py-3 px-4">
-            <button
+            <button (click)="onResolveTicket()"
                     class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 mr-2">
               Resolve
             </button>

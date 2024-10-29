@@ -7,6 +7,7 @@ import {AsyncPipe} from '@angular/common';
 import {ModalTypeEnum} from '../models/modal.models';
 import {DeleteTicketComponent} from '../delete-ticket/delete-ticket.component';
 import {EditTicketComponent} from '../edit-ticket/edit-ticket.component';
+import {ResolveTicketComponent} from '../resolve-ticket/resolve-ticket.component';
 
 @Component({
   selector: 'app-list-tickets',
@@ -16,7 +17,8 @@ import {EditTicketComponent} from '../edit-ticket/edit-ticket.component';
     AddTicketComponent,
     AsyncPipe,
     DeleteTicketComponent,
-    EditTicketComponent
+    EditTicketComponent,
+    ResolveTicketComponent
   ],
   templateUrl: './list-tickets.component.html',
   styleUrl: './list-tickets.component.css'
@@ -25,11 +27,13 @@ export class ListTicketsComponent {
   protected isAddTicketModalOpen: Observable<boolean>;
   protected isDeleteTicketModalOpen: Observable<boolean>;
   protected isEditTicketModalOpen: Observable<boolean>;
+  protected isResolveTicketModalOpen: Observable<boolean>;
 
   constructor(private _modalService: ModalService) {
     this.isAddTicketModalOpen = this._modalService.isModalOpen(ModalTypeEnum.ADD_TICKET_MODAL);
     this.isDeleteTicketModalOpen = this._modalService.isModalOpen(ModalTypeEnum.DELETE_TICKET_MODAL);
     this.isEditTicketModalOpen = this._modalService.isModalOpen(ModalTypeEnum.EDIT_TICKET_MODAL);
+    this.isResolveTicketModalOpen = this._modalService.isModalOpen(ModalTypeEnum.RESOLVE_TICKET_MODAL);
   }
 
   public onCreateNewTicket(): void {
@@ -66,6 +70,18 @@ export class ListTicketsComponent {
 
   public onEditTicketConfirm(): void {
     this._modalService.confirmModal(ModalTypeEnum.EDIT_TICKET_MODAL);
+  }
+
+   public onResolveTicket(): void {
+    this._modalService.openModal(ModalTypeEnum.RESOLVE_TICKET_MODAL);
+  }
+
+  public onResolveTicketCancel(): void {
+    this._modalService.cancelModal(ModalTypeEnum.RESOLVE_TICKET_MODAL);
+  }
+
+  public onResolveTicketConfirm(): void {
+    this._modalService.confirmModal(ModalTypeEnum.RESOLVE_TICKET_MODAL);
   }
 
 }

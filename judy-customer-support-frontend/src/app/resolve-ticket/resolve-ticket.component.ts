@@ -1,17 +1,17 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {ModalActionEnum, ModalEvent, ModalTypeEnum} from '../models/modal.models';
 import {Observable} from 'rxjs';
 import {ModalService} from '../services/modal.service';
 
 @Component({
-  selector: 'app-delete-ticket',
+  selector: 'app-resolve-ticket',
   standalone: true,
   imports: [],
-  templateUrl: './delete-ticket.component.html',
-  styleUrl: './delete-ticket.component.css'
+  templateUrl: './resolve-ticket.component.html',
+  styleUrl: './resolve-ticket.component.css'
 })
-export class DeleteTicketComponent {
-  private MODAL_TYPE = ModalTypeEnum.DELETE_TICKET_MODAL;
+export class ResolveTicketComponent {
+  private MODAL_TYPE = ModalTypeEnum.RESOLVE_TICKET_MODAL;
   private modalEvents: Observable<ModalEvent>;
 
   constructor(private _modalService: ModalService) {
