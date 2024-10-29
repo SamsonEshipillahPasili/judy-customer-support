@@ -13,10 +13,10 @@ export class ModalService {
    * Ensures that all the modals are closed.
    * We call this before attempting to open a new modal.
    *
-   * @private
    */
-  private closeOtherModals(): void {
-    // todo: close other modals.
+  public closeAllModals(): void {
+    // todo: close all modals.
+    this.addTicketModal.next(false);
   }
 
 
@@ -25,7 +25,7 @@ export class ModalService {
    *
    */
   public openAddTicketModal(): void {
-    this.closeOtherModals();
+    this.closeAllModals();
     this.addTicketModal.next(true);
   }
 
