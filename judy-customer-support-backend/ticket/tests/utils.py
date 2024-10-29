@@ -10,6 +10,7 @@ from ticket.models import Ticket
 
 _fake = faker.Faker()
 
+BASE_URL = '/api/tickets/'
 
 def create_user() -> User:
     return User.objects.create_user(

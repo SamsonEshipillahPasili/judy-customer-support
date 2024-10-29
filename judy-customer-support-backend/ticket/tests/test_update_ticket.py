@@ -12,12 +12,11 @@ from . import utils as test_utils
 
 class TestUpdateTicket(TestCase):
     def setUp(self) -> None:
-        self.base_url = '/api/tickets'
         self.fake = faker.Faker()
         self.user = test_utils.create_user()
         self.client = test_utils.create_api_client(self.user)
         self.ticket = test_utils.create_test_ticket(self.user)
-        self.url = f'{self.base_url}/{self.ticket.id}/'
+        self.url = f'{test_utils.BASE_URL}{self.ticket.id}/'
 
     def test_update_ticket_no_authentication(self):
         client = APIClient()

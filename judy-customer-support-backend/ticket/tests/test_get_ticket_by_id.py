@@ -12,8 +12,7 @@ class TestGetTicketById(TestCase):
     def setUp(self) -> None:
         self.user = test_utils.create_user()
         self.ticket = test_utils.create_test_ticket(self.user)
-        self.base_url = f'/api/tickets'
-        self.url = f'{self.base_url}/{self.ticket.id}/'
+        self.url = f'{test_utils.BASE_URL}{self.ticket.id}/'
         self.client = test_utils.create_api_client(self.user)
 
     def test_get_ticket_no_authentication(self):
@@ -41,7 +40,7 @@ class TestGetTicketById(TestCase):
         self.assertTrue(response.data['resolved_at'] is None)
 
     def test_get_non_existent_ticket_by_id(self) -> None:
-        response = self.client.get(f'{self.base_url}/{1_000_000}/')
+        response = self.client.get(f'{test_utils.BASE_URL}{1_000_000}/')
 
         # HTTP status check
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

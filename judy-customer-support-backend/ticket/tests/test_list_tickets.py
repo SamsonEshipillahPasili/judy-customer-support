@@ -56,17 +56,16 @@ class TestListTickets(TestCase):
             test_utils.create_test_ticket(self.user)
             for _ in range(self.NUM_TICKETS)
         ]
-        self.url = f'/api/tickets/'
         self.client = test_utils.create_api_client(self.user)
 
     def test_list_ticket_no_authentication(self):
         client = APIClient()
-        response = client.get(self.url)
+        response = client.get(test_utils.BASE_URL)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
     def test_list_tickets(self) -> None:
-        response = self.client.get(self.url)
+        response = self.client.get(test_utils.BASE_URL)
 
         # HTTP status check
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -92,7 +91,7 @@ class TestListTickets(TestCase):
     def test_list_tickets_for_a_non_owner(self) -> None:
         user2 = test_utils.create_user()
         client2 = test_utils.create_api_client(user2)
-        response = client2.get(self.url)
+        response = client2.get(test_utils.BASE_URL)
 
         # HTTP Status Check
         self.assertEqual(response.status_code, status.HTTP_200_OK)
