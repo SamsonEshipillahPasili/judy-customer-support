@@ -11,7 +11,7 @@ export class TicketService {
   constructor(private _loginService: LoginService) {}
 
   public async listTickets(): Promise<Ticket[]> {
-    const accessToken = this._loginService.getOrRefreshAccessToken();
+    const accessToken = await this._loginService.getOrRefreshAccessToken();
     const response = await fetch(
       TICKETS_ENDPOINT,
       {
