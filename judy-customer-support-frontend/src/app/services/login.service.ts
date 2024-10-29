@@ -67,7 +67,7 @@ export class LoginService {
       return false;
     }
 
-    return !this.isAccessTokenExpired();
+    return !this.isRefreshTokenExpired();
   }
 
   public async login(loginRequest: LoginRequest): Promise<boolean> {
