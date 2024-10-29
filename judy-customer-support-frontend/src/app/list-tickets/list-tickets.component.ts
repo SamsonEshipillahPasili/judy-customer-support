@@ -88,8 +88,8 @@ export class ListTicketsComponent {
     this._modalService.confirmModal(ModalTypeEnum.EDIT_TICKET_MODAL);
   }
 
-   public onResolveTicket(): void {
-    this._modalService.openModal(ModalTypeEnum.RESOLVE_TICKET_MODAL);
+   public onResolveTicket(ticket: Ticket): void {
+    this._modalService.openModal(ModalTypeEnum.RESOLVE_TICKET_MODAL, ticket);
   }
 
   public onResolveTicketCancel(): void {
