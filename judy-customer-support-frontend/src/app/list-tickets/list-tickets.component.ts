@@ -8,6 +8,8 @@ import {ModalTypeEnum} from '../models/modal.models';
 import {DeleteTicketComponent} from '../delete-ticket/delete-ticket.component';
 import {EditTicketComponent} from '../edit-ticket/edit-ticket.component';
 import {ResolveTicketComponent} from '../resolve-ticket/resolve-ticket.component';
+import {LoginService} from '../services/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-tickets',
@@ -29,7 +31,11 @@ export class ListTicketsComponent {
   protected isEditTicketModalOpen: Observable<boolean>;
   protected isResolveTicketModalOpen: Observable<boolean>;
 
-  constructor(private _modalService: ModalService) {
+  constructor(
+    private _modalService: ModalService,
+    private _loginService: LoginService,
+    private _router: Router
+    ) {
     this.isAddTicketModalOpen = this._modalService.isModalOpen(ModalTypeEnum.ADD_TICKET_MODAL);
     this.isDeleteTicketModalOpen = this._modalService.isModalOpen(ModalTypeEnum.DELETE_TICKET_MODAL);
     this.isEditTicketModalOpen = this._modalService.isModalOpen(ModalTypeEnum.EDIT_TICKET_MODAL);
@@ -84,4 +90,8 @@ export class ListTicketsComponent {
     this._modalService.confirmModal(ModalTypeEnum.RESOLVE_TICKET_MODAL);
   }
 
+  public onLogout(): void {
+    this._loginService.logout();
+    this._router.navigate(['/login']);
+  }
 }

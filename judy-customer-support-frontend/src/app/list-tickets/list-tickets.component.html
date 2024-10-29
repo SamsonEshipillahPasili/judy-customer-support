@@ -25,14 +25,22 @@
 
 <div class="bg-gray-100 flex justify-center min-h-screen">
   <div class="w-full max-w-7xl bg-white shadow-lg rounded-lg p-8 my-4">
-    <div class="flex justify-between items-center mb-6">
+    <div class="flex justify-between w-full">
       <h2 class="text-2xl font-bold text-gray-800">Tickets</h2>
-      <button type="submit"
-              class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-              (click)="onCreateNewTicket()">
-        Create New Ticket
-      </button>
+      <div class="flex gap-4 items-center mb-6">
+        <button type="submit"
+                class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                (click)="onCreateNewTicket()">
+          Create New Ticket
+        </button>
+        <button type="submit"
+                class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                (click)="onLogout()">
+          Logout
+        </button>
+      </div>
     </div>
+
 
     <!-- Tickets Table -->
     <div class="overflow-x-auto">
@@ -91,15 +99,15 @@
           </td>
           <td class="py-3 px-4">
             <button
-                    class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 mr-2">
+              class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 mr-2">
               Resolve
             </button>
             <button
-                    class="bg-white hover:bg-indigo-600 hover:text-white text-indigo-500 text-xs font-semibold py-1 px-3 rounded-lg focus:ring-2 focus:outline-none ring-2 ring-indigo-500 ring-opacity-50 mr-2">
+              class="bg-white hover:bg-indigo-600 hover:text-white text-indigo-500 text-xs font-semibold py-1 px-3 rounded-lg focus:ring-2 focus:outline-none ring-2 ring-indigo-500 ring-opacity-50 mr-2">
               Edit
             </button>
             <button
-                    class="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+              class="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
               Delete
             </button>
           </td>
