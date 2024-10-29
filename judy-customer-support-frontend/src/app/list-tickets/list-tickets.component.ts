@@ -76,8 +76,8 @@ export class ListTicketsComponent {
     this._modalService.confirmModal(ModalTypeEnum.DELETE_TICKET_MODAL);
   }
 
-  public onEditTicket(): void {
-    this._modalService.openModal(ModalTypeEnum.EDIT_TICKET_MODAL);
+  public onEditTicket(ticket: Ticket): void {
+    this._modalService.openModal(ModalTypeEnum.EDIT_TICKET_MODAL, ticket);
   }
 
   public onEditTicketCancel(): void {
