@@ -1,0 +1,85 @@
+<div class="bg-gray-100 flex justify-center min-h-screen">
+  <div class="w-full max-w-7xl bg-white shadow-lg rounded-lg p-8 my-4">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Tickets</h2>
+      <button type="submit"
+              class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+        Create New Ticket
+      </button>
+    </div>
+
+    <!-- Tickets Table -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+        <thead>
+        <tr class="w-full bg-gray-100 border-b">
+          <th class="text-left py-3 px-4 font-semibold text-gray-700">Title</th>
+          <th class="text-left py-3 px-4 font-semibold text-gray-700">Description</th>
+          <th class="text-left py-3 px-4 font-semibold text-gray-700">Date Opened</th>
+          <th class="text-left py-3 px-4 font-semibold text-gray-700">Status</th>
+          <th class="text-left py-3 px-4 font-semibold text-gray-700">Date Closed</th>
+          <th class="text-left py-3 px-4 font-semibold text-gray-700">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="border-b hover:bg-gray-50">
+          <td class="py-3 px-4 text-slate-800">Sample Ticket Title</td>
+          <td class="py-3 px-4 text-slate-800">This is a sample description for the ticket.</td>
+          <td class="py-3 px-4 text-sm">
+            <span class="font-semibold text-slate-600">12-03-14 13:00</span>
+          </td>
+          <td class="py-3 px-4 text-sm">
+            <span class="text-green-500 font-semibold">Resolved</span>
+            <!-- If unresolved, add 'text-red-500 font-semibold' classes here -->
+          </td>
+          <td class="py-3 px-4 text-sm">
+            <span class="font-semibold text-slate-600">12-03-14 13:00</span>
+          </td>
+          <td class="py-3 px-4">
+            <button
+                    class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 mr-2">
+              Resolve
+            </button>
+            <button
+                    class="bg-white hover:bg-indigo-600 hover:text-white text-indigo-500 text-xs font-semibold py-1 px-3 rounded-lg focus:ring-2 focus:outline-none ring-2 ring-indigo-500 ring-opacity-50 mr-2">
+              Edit
+            </button>
+            <button
+                    class="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+              Delete
+            </button>
+          </td>
+        </tr>
+        <tr class="border-b hover:bg-gray-50">
+          <td class="py-3 px-4 text-slate-800">Sample Ticket Title</td>
+          <td class="py-3 px-4 text-slate-800">This is a sample description for the ticket.</td>
+          <td class="py-3 px-4 text-sm">
+            <span class="font-semibold text-slate-600">12-03-14 13:00</span>
+          </td>
+          <td class="py-3 px-4 text-sm">
+            <span class="text-green-500 font-semibold">Resolved</span>
+            <!-- If unresolved, add 'text-red-500 font-semibold' classes here -->
+          </td>
+          <td class="py-3 px-4 text-sm">
+            <span class="font-semibold text-slate-600">12-03-14 13:00</span>
+          </td>
+          <td class="py-3 px-4">
+            <button
+                    class="bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 mr-2">
+              Resolve
+            </button>
+            <button
+                    class="bg-white hover:bg-indigo-600 hover:text-white text-indigo-500 text-xs font-semibold py-1 px-3 rounded-lg focus:ring-2 focus:outline-none ring-2 ring-indigo-500 ring-opacity-50 mr-2">
+              Edit
+            </button>
+            <button
+                    class="bg-red-500 hover:bg-red-600 text-white text-xs font-semibold py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+              Delete
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
